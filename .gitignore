@@ -1,0 +1,9 @@
+.c4droid
+*.class
+*.exe
+*.o
+*.so
+
+*.log
+*.sqlite
+
