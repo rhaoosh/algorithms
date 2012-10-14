@@ -36,48 +36,60 @@ MERGE-SORT(A,p,r)
 		MERGE-SORT(A,q+1,r)
 		MERGE(A,p,q,r)
 		
+Running time of MERGE-SORT: O(n*lg(n))
 */
 
 #include "utils.h"
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
+#include <limits.h>
 
 void merge(int A[], int p, int q, int r){
 	int n1 = q - p + 1;
 	int n2 = r -q;
 	
-	int L[n1] = malloc(n1*sizeof(int));
-	int R[n2] = malloc(n2*sizeof(int));
+	int L[n1+1];// = malloc(n1*sizeof(int));
+	int R[n2+1];// = malloc(n2*sizeof(int));
 	
 	for(int i=0; i < n1; i++){
-		L[i] = A[p+i-1]
+		L[i] = A[p+i];
 	}
 	
 	for(int j=0; j < n2; j++){
-		R[j] = A[q + j];
+		R[j] = A[q + j + 1];
 	}
-	
-	L[n1] = NULL;
-	R[n2] = NULL;
+
+	L[n1] = INT_MAX;
+	R[n2] = INT_MAX;
+			
+//	printf("L = ");
+//	print_array(L, n1 + 1);
+//	printf("R = ");
+//	print_array(R, n2 + 1);
 	
 	int i = 0;
 	int j = 0;
 	
-	for (int k = p; k < p; k++){
+	for (int k = p; k <= r; k++){
 		if(L[i] <= R[j]){
-			A[k] = L[i]
-			i = i + 1
+//			printf("L wins: %d\n",L[i]);
+			A[k] = L[i];
+			i = i + 1;
 		}else{
-			j = j + 1
+//			printf("R wins: %d\n",R[j]);
+			A[k] = R[j];
+			j = j + 1;
 		}
 	}
+	
 	
 }
 
 
 void merge_sort(int A[], int p, int r){
 	if (p < r){
-		q = Math.floor((p+r)/2);
+		int q = floor((p+r)/2);
 		merge_sort(A,p,q);
 		merge_sort(A,q+1,r);
 		merge(A,p,q,r);
@@ -94,38 +106,34 @@ int main(){
 	int A[]={11,2,4,1,6,8,9,10,2,3,7,3,4};
 	int result[]={11,2,4,1,2,3,6,7,8,9,10,3,4};
 	
+//	printf("Input A = ");
+//	print_array(A,12);
+	
 	merge(A,3,7,10);
+	
+//	printf("Output A = ");
+//	print_array(A,12);
+	
+//	printf("Expected = ");
+//	print_array(result,12);
 
-	if(!equal_array(A,result,7)){
+	if(!equal_array(A,result,12)){
 		printf("Fail! A and result are not equal.");
 		return 1;
 	}
 	
 
-/*
-	int A[]={1,4,2,5,6,3,6};
-	int result[]= {1,2,3,4,5,6,6};
-	
-	insertion_sort(A, 7);
-	print_array(A,7);
-	
-	if(!equal_array(A,result,7)){
-		printf("Fail! A and result are not equal.");
-		return 1;
-	}
-	
-	
 	int A2[]={1,4,2,5,6,3,6};
-	int result2[]= {6,6,5,4,3,2,1};
+	int result2[]= {1,2,3,4,5,6,6};
 	
-	insertion_sort2(A2, 7);
-	print_array(A2,7);	
+	merge_sort(A2,0,6);
+	print_array(A2,7);
 	
 	if(!equal_array(A2,result2,7)){
-		printf("Fail! A2 and result are not equal.");
+		printf("Fail! A and result are not equal.");
 		return 1;
 	}
-	*/
+	
 	
 	printf("\nSuccess!\n");
 	return 0;
