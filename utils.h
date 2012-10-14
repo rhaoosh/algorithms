@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-inline bool equal_array(int A[], int B[], int size){
+static inline bool equal_array(int A[], int B[], int size){
 	for(int i=0; i<size; i++){
 		if(A[i] != B[i]){
 			return false;
@@ -14,7 +14,7 @@ inline bool equal_array(int A[], int B[], int size){
 	return true;
 }
 
-inline void print_array(int A[], int size){
+static inline void print_array(int A[], int size){
 	printf("Array:");
 	
 	for(int i=0; i<size-1; i++){		

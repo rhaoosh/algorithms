@@ -3,7 +3,7 @@
 *.exe
 *.o
 *.so
-
+*.out
 *.log
 *.sqlite
 

@@ -44,8 +44,8 @@ void selection_sort(int A[], int size){
 #ifndef HASMAIN
 
 int main(){
-	int A[]={1,4,2,5,6,3,6};
-	int result[]= {1,2,3,4,5,6,6};
+	int A[]={6,4,2,5,6,3,2};
+	int result[]= {2,2,3,4,5,6,6};
 	
 	selection_sort(A, 7);
 	print_array(A,7);
