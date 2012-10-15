@@ -48,8 +48,10 @@ int merge_inversions(int A[], int p, int q, int r){
 	for (int k = p; k <= r; k++){
 		printf("k=%d, L[%d]=%d, R[%d]=%d, inversions = %d\n",k,i, L[i], j, R[j], inversions);
         if(counted == false && R[j] < L[i]){
+            //If L[i] is > R[j], then L[i+1]...L[n1-1] is also > R[j]
             inversions += n1-i;
             counted = true;
+            printf("counted! inversions = %d\n",inversions);
         } 
         
         if(L[i] <= R[j]){
@@ -88,25 +90,32 @@ int count_inversions(int A[], int p, int r){
 //TESTS
 #ifndef HASMAIN
 
+bool test1(int A[], int size, int expected);
+
 int main(){
 
-	int A[]={2,3,8,6,1};
-	int expected=5;
-	
-	printf("Input A = ");
-	print_array(A,5);
-	
-	int result = count_inversions(A,0,4);
-	
-	if(result != expected){
-		printf("Fail! result != expected, %d != %d\n",result, expected);
-		return 1;
+	int A[]={2,3,8,6,1};	
+	if(!test1(A,5,5)){
+	    printf("test1 failed");
+	    return 1;
 	}
-	
 	
 	printf("\nSuccess!\n");
 	return 0;
 
+}
+
+bool test1(int A[], int size, int expected){
+	printf("Input A = ");
+	print_array(A,size);
+	
+	int result = count_inversions(A,0,size-1);
+	
+	if(result != expected){
+		printf("Fail! result != expected, %d != %d\n",result, expected);
+		return false;
+	}
+	return true;
 }
 
 #endif
