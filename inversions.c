@@ -48,7 +48,8 @@ int merge_inversions(int A[], int p, int q, int r){
 	for (int k = p; k <= r; k++){
 		printf("k=%d, L[%d]=%d, R[%d]=%d, inversions = %d\n",k,i, L[i], j, R[j], inversions);
         if(counted == false && R[j] < L[i]){
-            //If L[i] is > R[j], then L[i+1]...L[n1-1] is also > R[j]
+            //If L[i] is > R[j], then L[i+1]...L[n1-1] is also > R[j] so we count the rest of
+            //the elements in L as well.
             inversions += n1-i;
             counted = true;
             printf("counted! inversions = %d\n",inversions);
